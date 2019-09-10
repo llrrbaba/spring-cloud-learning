@@ -21,6 +21,11 @@ public class ArticleController {
         // 直接调用，不走eureka
 //        return restTemplate.getForObject("http://localhost:8082/user/hello", String.class);
         // 通过应用名调用，走eureka
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return restTemplate.getForObject("http://eureka-client-user-service/user/hello", String.class);
     }
 
