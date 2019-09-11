@@ -1,5 +1,6 @@
 package cn.rocker.springcloudlearningeurekaclientarticleservice.controller;
 
+import cn.rocker.springcloudlearningeurekaclientarticleservice.service.UserRemoteClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,18 +16,19 @@ public class ArticleController {
 
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private UserRemoteClient userRemoteClient;
 
     @GetMapping("/article/callHello")
     public String callHello(){
-        // 直接调用，不走eureka
+        // v1.直接调用，不走eureka
 //        return restTemplate.getForObject("http://localhost:8082/user/hello", String.class);
-        // 通过应用名调用，走eureka
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return restTemplate.getForObject("http://eureka-client-user-service/user/hello", String.class);
+
+        // v2.通过应用名调用，走eureka
+//        return restTemplate.getForObject("http://eureka-client-user-service/user/hello", String.class);
+
+        // v3.通过feign接口调用
+        return userRemoteClient.hello();
     }
 
 }
