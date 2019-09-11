@@ -19,7 +19,7 @@ public class MyRule implements IRule {
     public Server choose(Object key) {
         List<Server> servers = lb.getAllServers();
         for (Server server : servers) {
-            System.out.println(server.getHostPort());
+            System.out.printf("host%s\n", server.getHostPort());
         }
         return servers.get(0);
     }

@@ -23,10 +23,10 @@ public class SpringCloudLearningEurekaClientArticleServiceApplication {
         return new RestTemplate();
     }
 
-    @Bean
-    public IRule iRule(){
-        RetryRule retryRule = new RetryRule(new MyRule());
-        return retryRule;
-    }
+//    @Bean
+//    public IRule iRule(){
+//        RetryRule retryRule = new RetryRule(new MyRule());
+//        return retryRule;
+//    }
 
 }
