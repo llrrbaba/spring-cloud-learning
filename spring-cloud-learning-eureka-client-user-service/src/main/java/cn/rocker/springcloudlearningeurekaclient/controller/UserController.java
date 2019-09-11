@@ -11,13 +11,16 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @GetMapping("/user/hello")
-    public String hello(){
+    public String hello(@RequestParam("randomNum") Integer randomNum){
         try {
-            Thread.sleep(9000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "hello";
+//        if(randomNum % 2 == 0){
+//            throw new RuntimeException("来了个偶数，真新鲜");
+//        }
+        return String.format("hello:%s", randomNum);
     }
 
 }
