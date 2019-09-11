@@ -2,9 +2,15 @@ package cn.rocker.springcloudlearningeurekaclientarticleservice.controller;
 
 import cn.rocker.springcloudlearningeurekaclientarticleservice.service.UserRemoteClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
+import java.util.Random;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * @author rocker
@@ -16,7 +22,7 @@ public class ArticleController {
 
     @Autowired
     private RestTemplate restTemplate;
-    @Autowired
+    @Resource(name = "eureka-client-user-service")
     private UserRemoteClient userRemoteClient;
 
     @GetMapping("/article/callHello")
@@ -28,7 +34,8 @@ public class ArticleController {
 //        return restTemplate.getForObject("http://eureka-client-user-service/user/hello", String.class);
 
         // v3.通过feign接口调用
-        return userRemoteClient.hello();
+        int nextInt = new Random().nextInt(10000);
+        return userRemoteClient.hello(nextInt);
     }
 
 }
