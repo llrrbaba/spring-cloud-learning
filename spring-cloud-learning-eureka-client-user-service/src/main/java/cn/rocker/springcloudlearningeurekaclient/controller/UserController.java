@@ -13,7 +13,7 @@ public class UserController {
     @GetMapping("/user/hello")
     public String hello(){
         try {
-            Thread.sleep(2000);
+            Thread.sleep(9000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
