@@ -1,17 +1,15 @@
 package cn.rocker.springcloudlearningeurekaclientarticleservice.service;
 
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @author chengzc
- * @date 2019-09-11 16:54
- * @since
+ * @author rocker
+ * @date 2019/09/15 14:06
+ * @since V1.0
  */
 @Component
-public class UserRemoteClientFallBack implements UserRemoteClient {
+public class UserRemoteServiceFallback implements UserRemoteService {
     @Override
-    @GetMapping("/fallback/user/hello")
     public String hello(Integer randomNum) {
         return String.format("fallback for #hello:%s", randomNum);
     }
